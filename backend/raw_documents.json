@@ -1,242 +1,698 @@
 [
   {
-    "id": "artificial_intelligence_0",
-    "title": "Artificial Intelligence Update #1",
-    "source": "Wired",
-    "date": "2025-12-14",
-    "text": "New breakthroughs in deep learning architectures are reshaping enterprise AI.",
+    "id": "arxiv_artificial_intelligence_0",
+    "title": "Model Agreement via Anchoring",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Numerous lines of aim to control $\\textit{model disagreement}$ -- the extent to which two machine learning models disagree in their predictions. We adopt a simple and standard notion of model disagreement in real-valued prediction problems, namely the expected squared difference in predictions betwe",
     "technology": "Artificial Intelligence"
   },
   {
-    "id": "artificial_intelligence_1",
-    "title": "Artificial Intelligence Update #2",
-    "source": "IEEE Spectrum",
-    "date": "2025-10-12",
-    "text": "AI adoption in healthcare diagnostics has doubled year-over-year.",
+    "id": "arxiv_artificial_intelligence_1",
+    "title": "SeeThrough3D: Occlusion Aware 3D Control in Text-to-Image Generation",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "We identify occlusion reasoning as a fundamental yet overlooked aspect for 3D layout-conditioned generation. It is essential for synthesizing partially occluded objects with depth-consistent geometry and scale. While existing methods can generate realistic scenes that follow input layouts, they ofte",
     "technology": "Artificial Intelligence"
   },
   {
-    "id": "artificial_intelligence_2",
-    "title": "Artificial Intelligence Update #3",
-    "source": "GitHub Trending",
-    "date": "2025-02-26",
-    "text": "Governments release new regulatory frameworks for responsible AI deployment.",
+    "id": "arxiv_artificial_intelligence_2",
+    "title": "SOTAlign: Semi-Supervised Alignment of Unimodal Vision and Language Models via Optimal Transport",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "The Platonic Representation Hypothesis posits that neural networks trained on different modalities converge toward a shared statistical model of the world. Recent work exploits this convergence by aligning frozen pretrained vision and language models with lightweight alignment layers, but typically ",
     "technology": "Artificial Intelligence"
   },
   {
-    "id": "blockchain_0",
-    "title": "Blockchain Update #1",
-    "source": "IEEE Spectrum",
-    "date": "2025-02-06",
-    "text": "Decentralised finance protocols see unprecedented institutional investment.",
+    "id": "arxiv_blockchain_0",
+    "title": "SettleFL: Trustless and Scalable Reward Settlement Protocol for Federated Learning on Permissionless Blockchains (Extended version)",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "In open Federated Learning (FL) environments where no central authority exists, ensuring collaboration fairness relies on decentralized reward settlement, yet the prohibitive cost of permissionless blockchains directly clashes with the high-frequency, iterative nature of model training. Existing sol",
     "technology": "Blockchain"
   },
   {
-    "id": "blockchain_1",
-    "title": "Blockchain Update #2",
-    "source": "IEEE Spectrum",
+    "id": "arxiv_blockchain_1",
+    "title": "Timing Games: Probabilistic backrunning and spam",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "There are $n$ players who compete by timing their actions. An opportunity appears randomly on a time interval. Whoever takes an action the fastest after the opportunity has arisen wins. The occurrence of the opportunity is observed only with a delay. Taking actions is costly. We characterize the uni",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "arxiv_blockchain_2",
+    "title": "Resilient Federated Chain: Transforming Blockchain Consensus into an Active Defense Layer for Federated Learning",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "Federated Learning (FL) has emerged as a key paradigm for building Trustworthy AI systems by enabling privacy-preserving, decentralized model training. However, FL is highly susceptible to adversarial attacks that compromise model integrity and data confidentiality, a vulnerability exacerbated by th",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "arxiv_quantum_computing_0",
+    "title": "Strengthening security and noise resistance in one-way quantum key distribution protocols through hypercube-based quantum walks",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Quantum Key Distribution (QKD) is a foundational cryptographic protocol that ensures information-theoretic security. However, classical protocols such as BB84, though favored for their simplicity, offer limited resistance to eavesdropping, and perform poorly under realistic noise conditions. Recent ",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "arxiv_quantum_computing_1",
+    "title": "Connecting Quantum Contextuality and Nonlocality",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Quantum theory departs from classical physics in its treatment of correlations, most prominently through the phenomena of contextuality and nonlocality. Once regarded primarily as foundational curiosities, these effects are now understood as key operational resources for quantum computation, communi",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "arxiv_quantum_computing_2",
+    "title": "Dequantization Barriers for Guided Stoquastic Hamiltonians",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "We construct a probability distribution, induced by the Perron--Frobenius eigenvector of an exponentially large graph, which cannot be efficiently sampled by any classical algorithm, even when provided with the best-possible warm-start distribution. In the quantum setting, this problem can be viewed",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "arxiv_edge_computing_0",
+    "title": "UFO-DETR: Frequency-Guided End-to-End Detector for UAV Tiny Objects",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Small target detection in UAV imagery faces significant challenges such as scale variations, dense distribution, and the dominance of small targets. Existing algorithms rely on manually designed components, and general-purpose detectors are not optimized for UAV images, making it difficult to balanc",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "arxiv_edge_computing_1",
+    "title": "Queue occupancy and server size distribution of a queue length dependent vacation queue with an optional service",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "The discrete time queueing system is highly applicable to modern telecommunication systems, where it provides adaptive packet handling, congestion controlled security/inspection, energy efficient operation, and supports bursty traffic common in 5G, Internet of Things (IoT), and edge computing enviro",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "arxiv_edge_computing_2",
+    "title": "Machine Learning on Heterogeneous, Edge, and Quantum Hardware for Particle Physics (ML-HEQUPP)",
+    "source": "arXiv",
+    "date": "2026-02-24",
+    "text": "The next generation of particle physics experiments will face a new era of challenges in data acquisition, due to unprecedented data rates and volumes along with extreme environments and operational constraints. Harnessing this data for scientific discovery demands real-time inference and decision-m",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "arxiv_cybersecurity_0",
+    "title": "Enabling End-to-End APT Emulation in Industrial Environments: Design and Implementation of the SIMPLE-ICS Testbed",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "Research on Advanced Persistent Threats (APTs) in industrial environments requires experimental platforms that support realistic end-to-end attack emulation across converged enterprise IT, operational technology (OT), and Industrial Internet of Things (IIoT) networks. However, existing industrial cy",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "arxiv_cybersecurity_1",
+    "title": "Learning Unknown Interdependencies for Decentralized Root Cause Analysis in Nonlinear Dynamical Systems",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "Root cause analysis (RCA) in networked industrial systems, such as supply chains and power networks, is notoriously difficult due to unknown and dynamically evolving interdependencies among geographically distributed clients. These clients represent heterogeneous physical processes and industrial as",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "arxiv_cybersecurity_2",
+    "title": "Synapse-Inspired Energy Networks: A Neuromorphic Approach to Microgrid Protection without Communication Links",
+    "source": "arXiv",
+    "date": "2026-02-24",
+    "text": "Traditional protection systems for microgrids, which rely on high fault currents and continuous communication, struggle to keep up with the changing dynamics and cybersecurity concerns of decentralized networks. In this study, we introduce a novel biologically inspired protection system based on neu",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "arxiv_5g_networks_0",
+    "title": "MulCovFuzz: A Multi-Component Coverage-Guided Greybox Fuzzer for 5G Protocol Testing",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "As mobile networks transition to 5G infrastructure, ensuring robust security becomes more important due to the complex architecture and expanded attack surface. Traditional security testing approaches for 5G networks rely on black-box fuzzing techniques, which are limited by their inability to obser",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "arxiv_5g_networks_1",
+    "title": "End-to-End Latency Measurement Methodology for Connected and Autonomous Vehicle Teleoperation",
+    "source": "arXiv",
+    "date": "2026-02-19",
+    "text": "Connected and Autonomous Vehicles (CAVs) continue to evolve rapidly, and system latency remains one of their most critical performance parameters, particularly when vehicles are operated remotely. Existing latency-assessment methodologies focus predominantly on Glass-to-Glass (G2G) latency, defined ",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "arxiv_5g_networks_2",
+    "title": "Breaking 5G on The Lower Layer",
+    "source": "arXiv",
+    "date": "2026-02-10",
+    "text": "As 3GPP systems have strengthened security at the upper layers of the cellular stack, plaintext PHY and MAC layers have remained relatively understudied, though interest in them is growing. In this work, we explore lower-layer exploitation in modern 5G, where recent releases have increased the numbe",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "arxiv_augmented_reality_0",
+    "title": "OSDaR-AR: Enhancing Railway Perception Datasets via Multi-modal Augmented Reality",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Although deep learning has significantly advanced the perception capabilities of intelligent transportation systems, railway applications continue to suffer from a scarcity of high-quality, annotated data for safety-critical tasks like obstacle detection. While photorealistic simulators offer a solu",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "arxiv_augmented_reality_1",
+    "title": "ViSTAR: Virtual Skill Training with Augmented Reality with 3D Avatars and LLM coaching agent",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "We present ViSTAR, a Virtual Skill Training system in AR that supports self-guided basketball skill practice, with feedback on balance, posture, and timing. From a formative study with basketball players and coaches, the system addresses three challenges: understanding skills, identifying errors, an",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "arxiv_augmented_reality_2",
+    "title": "Interactive Augmented Reality-enabled Outdoor Scene Visualization For Enhanced Real-time Disaster Response",
+    "source": "arXiv",
+    "date": "2026-02-25",
+    "text": "A user-centered AR interface for disaster response is presented in this work that uses 3D Gaussian Splatting (3DGS) to visualize detailed scene reconstructions, while maintaining situational awareness and keeping cognitive load low. The interface relies on a lightweight interaction approach, combini",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "arxiv_digital_twins_0",
+    "title": "Simple Models, Real Swimming: Digital Twins for Tendon-Driven Underwater Robots",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Mimicking the graceful motion of swimming animals remains a core challenge in soft robotics due to the complexity of fluid-structure interaction and the difficulty of controlling soft, biomimetic bodies. Existing modeling approaches are often computationally expensive and impractical for complex con",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "arxiv_digital_twins_1",
+    "title": "Marinarium: a New Arena to Bring Maritime Robotics Closer to Shore",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "This paper presents the Marinarium, a modular and stand-alone underwater research facility designed to provide a realistic testbed for maritime and space-analog robotic experimentation in a resource-efficient manner. The Marinarium combines a fully instrumented underwater and aerial operational volu",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "arxiv_digital_twins_2",
+    "title": "Digital Twin-Based Beamforming for Interference Mitigation in AF Relay MIMO Systems",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "Beamforming in multiple-input multiple-output (MIMO) systems should take interference mitigation into account. However, for beamform design, accurate channel state information (CSI) is needed, which is often difficult to obtain due to channel variability, feedback overhead, or hardware constraints. ",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "arxiv_large_language_models_0",
+    "title": "MediX-R1: Open Ended Medical Reinforcement Learning",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "We introduce MediX-R1, an open-ended Reinforcement Learning (RL) framework for medical multimodal large language models (MLLMs) that enables clinically grounded, free-form answers beyond multiple-choice formats. MediX-R1 fine-tunes a baseline vision-language backbone with Group Based RL and a compos",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "arxiv_large_language_models_1",
+    "title": "Utilizing LLMs for Industrial Process Automation",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "A growing number of publications address the best practices to use Large Language Models (LLMs) for software engineering in recent years. However, most of this work focuses on widely-used general purpose programming languages like Python due to their widespread usage training data. The utility of LL",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "arxiv_large_language_models_2",
+    "title": "Toward Expert Investment Teams:A Multi-Agent LLM System with Fine-Grained Trading Tasks",
+    "source": "arXiv",
+    "date": "2026-02-26",
+    "text": "The advancement of large language models (LLMs) has accelerated the development of autonomous financial trading systems. While mainstream approaches deploy multi-agent systems mimicking analyst and manager roles, they often rely on abstract instructions that overlook the intricacies of real-world wo",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "github_artificial_intelligence_0",
+    "title": "Repo: AMAI-GmbH/AI-Expert-Roadmap (\u2b5030,764)",
+    "source": "GitHub Trending",
+    "date": "2025-09-12",
+    "text": "Roadmap to becoming an Artificial Intelligence Expert in 2022",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "github_artificial_intelligence_1",
+    "title": "Repo: feder-cr/Jobs_Applier_AI_Agent_AIHawk (\u2b5029,384)",
+    "source": "GitHub Trending",
+    "date": "2025-11-16",
+    "text": "AIHawk aims to easy job hunt process by automating the job application process. Utilizing artificial intelligence, it enables users to apply for multiple jobs in a tailored way.",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "github_artificial_intelligence_2",
+    "title": "Repo: steven2358/awesome-generative-ai (\u2b5011,530)",
+    "source": "GitHub Trending",
+    "date": "2026-02-24",
+    "text": "A curated list of modern Generative Artificial Intelligence projects and services",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "github_blockchain_0",
+    "title": "Repo: unionlabs/union (\u2b5074,283)",
+    "source": "GitHub Trending",
+    "date": "2026-02-24",
+    "text": "The trust-minimized, zero-knowledge bridging protocol, designed for censorship resistance, extremely high security, and usage in decentralized finance.",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "github_blockchain_1",
+    "title": "Repo: FuelLabs/fuel-core (\u2b5057,353)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "Rust full node implementation of the Fuel v2 protocol.",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "github_blockchain_2",
+    "title": "Repo: ethereum/go-ethereum (\u2b5050,867)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "Go implementation of the Ethereum protocol",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "github_quantum_computing_0",
+    "title": "Repo: PennyLaneAI/pennylane (\u2b503,085)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "PennyLane is an open-source quantum software platform for quantum computing, quantum machine learning, and quantum chemistry. Create meaningful quantum algorithms, from inspiration to implementation.",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "github_quantum_computing_1",
+    "title": "Repo: Classiq/classiq-library (\u2b501,970)",
+    "source": "GitHub Trending",
+    "date": "2026-02-26",
+    "text": "The Classiq Library is the largest collection of quantum algorithms and applications. It is the best way to explore quantum computing software. We welcome community contributions to our Library \ud83d\ude4c",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "github_quantum_computing_2",
+    "title": "Repo: ProjectQ-Framework/ProjectQ (\u2b50962)",
+    "source": "GitHub Trending",
+    "date": "2026-02-23",
+    "text": "ProjectQ: An open source software framework for quantum computing",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "github_edge_computing_0",
+    "title": "Repo: kubeedge/kubeedge (\u2b507,377)",
+    "source": "GitHub Trending",
+    "date": "2026-02-14",
+    "text": "Kubernetes Native Edge Computing Framework (project under CNCF)",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "github_edge_computing_1",
+    "title": "Repo: wasmCloud/wasmCloud (\u2b502,237)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "wasmCloud is an open source Cloud Native Computing Foundation (CNCF) project that enables teams to build, manage, and scale polyglot apps across any cloud, K8s, or edge.",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "github_edge_computing_2",
+    "title": "Repo: shellhub-io/shellhub (\u2b501,927)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": ":computer: Get seamless remote access to any Linux device. Centralized SSH for the edge and cloud computing",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "github_cybersecurity_0",
+    "title": "Repo: sherlock-project/sherlock (\u2b5073,213)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "Hunt down social media accounts by username across social networks",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "github_cybersecurity_1",
+    "title": "Repo: WerWolv/ImHex (\u2b5052,720)",
+    "source": "GitHub Trending",
+    "date": "2026-02-13",
+    "text": "\ud83d\udd0d A Hex Editor for Reverse Engineers, Programmers and people who value their retinas when working at 3 AM.",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "github_cybersecurity_2",
+    "title": "Repo: x64dbg/x64dbg (\u2b5047,801)",
+    "source": "GitHub Trending",
+    "date": "2026-02-25",
+    "text": "An open-source user mode debugger for Windows. Optimized for reverse engineering and malware analysis.",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "github_5g_networks_0",
+    "title": "Repo: open5gs/open5gs (\u2b502,470)",
+    "source": "GitHub Trending",
+    "date": "2026-02-25",
+    "text": "Open5GS is a C-language Open Source implementation for 5G Core and EPC, i.e. the core network of LTE/NR network (Release-17)",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "github_5g_networks_1",
+    "title": "Repo: free5gc/free5gc (\u2b502,251)",
+    "source": "GitHub Trending",
+    "date": "2026-02-25",
+    "text": "Open source 5G core network based on 3GPP R15",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "github_5g_networks_2",
+    "title": "Repo: magma/magma (\u2b501,821)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "Platform for building access networks and modular network services",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "github_augmented_reality_0",
+    "title": "Repo: jeeliz/jeelizFaceFilter (\u2b502,884)",
+    "source": "GitHub Trending",
+    "date": "2025-11-14",
+    "text": "\ud83c\udfad Lightweight WebGL & JavaScript library for real-time multi-face detection, tracking and augmented-reality face filters. Supports rotation, mouth-opening and integrates with Three.js, Babylon.js, Canvas2D and CSS3D",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "github_augmented_reality_1",
+    "title": "Repo: Igalia/wolvic (\u2b50933)",
+    "source": "GitHub Trending",
+    "date": "2025-12-18",
+    "text": "A fast and secure browser for standalone virtual-reality and augmented-reality headsets.",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "github_augmented_reality_2",
+    "title": "Repo: onmyway133/awesome-machine-learning (\u2b50813)",
+    "source": "GitHub Trending",
+    "date": "2026-01-24",
+    "text": "\ud83c\udfb0 A curated list of machine learning resources, preferably CoreML",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "github_digital_twins_0",
+    "title": "Repo: le5le-com/meta2d.js (\u2b501,138)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "The meta2d.js is real-time data exchange and interactive web 2D engine. Developers are able to build Web SCADA, IoT, Digital twins and so on. Meta2d.js\u662f\u4e00\u4e2a\u5b9e\u65f6\u6570\u636e\u54cd\u5e94\u548c\u4ea4\u4e92\u76842d\u5f15\u64ce\uff0c\u53ef\u7528\u4e8eWeb\u7ec4\u6001\uff0c\u7269\u8054\u7f51\uff0c\u6570\u5b57\u5b6a\u751f\u7b49\u573a\u666f\u3002",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "github_digital_twins_1",
+    "title": "Repo: eclipse-ditto/ditto (\u2b50849)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "Eclipse Ditto\u2122: Digital Twin framework of Eclipse IoT - main repository",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "github_digital_twins_2",
+    "title": "Repo: tier4/AWSIM (\u2b50683)",
+    "source": "GitHub Trending",
+    "date": "2025-12-06",
+    "text": "Open sourced digital twin simulator for Autoware",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "github_green_tech_0",
+    "title": "Repo: green-coding-solutions/green-metrics-tool (\u2b50240)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "Measure energy consumption and carbon emissions of software - Timelines, git-integration, Comparions, Dashboards and Optimizations included",
+    "technology": "Green Tech"
+  },
+  {
+    "id": "github_green_tech_1",
+    "title": "Repo: flixlix/energy-flow-card-plus (\u2b50230)",
+    "source": "GitHub Trending",
+    "date": "2026-02-26",
+    "text": "An upgraded Energy Distribution Card for Home Assistant, with added features like Individual Devices and refined UI enhancements, while maintaining the Energy Dashboard's original design.",
+    "technology": "Green Tech"
+  },
+  {
+    "id": "github_green_tech_2",
+    "title": "Repo: joular/powerjoular (\u2b50100)",
+    "source": "GitHub Trending",
+    "date": "2026-02-13",
+    "text": "PowerJoular allows monitoring power consumption of multiple platforms and processes",
+    "technology": "Green Tech"
+  },
+  {
+    "id": "github_large_language_models_0",
+    "title": "Repo: mlabonne/llm-course (\u2b5075,807)",
+    "source": "GitHub Trending",
+    "date": "2026-02-05",
+    "text": "Course to get into Large Language Models (LLMs) with roadmaps and Colab notebooks.",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "github_large_language_models_1",
+    "title": "Repo: QwenLM/Qwen3 (\u2b5026,702)",
+    "source": "GitHub Trending",
+    "date": "2026-01-09",
+    "text": "Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud.",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "github_large_language_models_2",
+    "title": "Repo: sgl-project/sglang (\u2b5023,821)",
+    "source": "GitHub Trending",
+    "date": "2026-02-27",
+    "text": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "hn_artificial_intelligence_0",
+    "title": "Ensuring a National Policy Framework for Artificial Intelligence",
+    "source": "HackerNews",
+    "date": "2025-12-11",
+    "text": "https:&#x2F;&#x2F;www.cnbc.com&#x2F;2025&#x2F;12&#x2F;11&#x2F;trump-signs-executive-order-...<a href=\"https:&#x2F;&#x2F;www.nbcne",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "hn_artificial_intelligence_1",
+    "title": "Why Nietzsche matters in the age of artificial intelligence",
+    "source": "HackerNews",
+    "date": "2025-11-11",
+    "text": "HackerNews discussion: Why Nietzsche matters in the age of artificial intelligence",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "hn_artificial_intelligence_2",
+    "title": "What the F*ck Is Artificial General Intelligence?",
+    "source": "HackerNews",
+    "date": "2025-09-29",
+    "text": "HackerNews discussion: What the F*ck Is Artificial General Intelligence?",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "hn_blockchain_0",
+    "title": "Stripe Launches L1 Blockchain: Tempo",
+    "source": "HackerNews",
+    "date": "2025-09-04",
+    "text": "HackerNews discussion: Stripe Launches L1 Blockchain: Tempo",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "hn_blockchain_1",
+    "title": "AI agents find $4.6M in blockchain smart contract exploits",
+    "source": "HackerNews",
+    "date": "2025-12-01",
+    "text": "HackerNews discussion: AI agents find $4.6M in blockchain smart contract exploits",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "hn_blockchain_2",
+    "title": "How blocks are chained in a blockchain",
+    "source": "HackerNews",
+    "date": "2025-10-27",
+    "text": "HackerNews discussion: How blocks are chained in a blockchain",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "hn_quantum_computing_0",
+    "title": "More on whether useful quantum computing is \u201cimminent\u201d",
+    "source": "HackerNews",
+    "date": "2025-12-21",
+    "text": "HackerNews discussion: More on whether useful quantum computing is \u201cimminent\u201d",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "hn_quantum_computing_1",
+    "title": "Ask HN: Any good books for a layman on history of quantum computing?",
+    "source": "HackerNews",
+    "date": "2025-10-22",
+    "text": "I recently read Genius Makers and very much enjoyed it, and was wondering if there were any similar books to help me better understand where we currently are regarding QC and how we got here",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "hn_quantum_computing_2",
+    "title": "Mysterious quantum computing restrictions spread across multiple nations (2024)",
+    "source": "HackerNews",
+    "date": "2025-12-27",
+    "text": "HackerNews discussion: Mysterious quantum computing restrictions spread across multiple nations (2024)",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "hn_edge_computing_0",
+    "title": "Optimizing AI Inference with Edge Computing",
+    "source": "HackerNews",
+    "date": "2025-09-02",
+    "text": "HackerNews discussion: Optimizing AI Inference with Edge Computing",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "hn_edge_computing_1",
+    "title": "Show HN:Edge Veda \u2013 A framework for resource-aware edge computing",
+    "source": "HackerNews",
+    "date": "2026-02-19",
+    "text": "HackerNews discussion: Show HN:Edge Veda \u2013 A framework for resource-aware edge computing",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "hn_edge_computing_2",
+    "title": "UnisonDB \u2013 A Log-Native Database for Edge AI and Edge Computing",
+    "source": "HackerNews",
+    "date": "2025-11-08",
+    "text": "HackerNews discussion: UnisonDB \u2013 A Log-Native Database for Edge AI and Edge Computing",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "hn_cybersecurity_0",
+    "title": "US cybersecurity chief leaked sensitive government files to ChatGPT: Report",
+    "source": "HackerNews",
+    "date": "2026-01-29",
+    "text": "HackerNews discussion: US cybersecurity chief leaked sensitive government files to ChatGPT: Report",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "hn_cybersecurity_1",
+    "title": "Norway reviews cybersecurity after remote-access feature found in Chinese buses",
+    "source": "HackerNews",
+    "date": "2025-11-05",
+    "text": "HackerNews discussion: Norway reviews cybersecurity after remote-access feature found in Chinese buses",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "hn_cybersecurity_2",
+    "title": "Proton Mail suspended journalist accounts at request of cybersecurity agency",
+    "source": "HackerNews",
+    "date": "2025-09-12",
+    "text": "HackerNews discussion: Proton Mail suspended journalist accounts at request of cybersecurity agency",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "hn_5g_networks_0",
+    "title": "5G Networks Could Provide an Unjammable GPS Alternative",
+    "source": "HackerNews",
+    "date": "2025-10-14",
+    "text": "HackerNews discussion: 5G Networks Could Provide an Unjammable GPS Alternative",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "hn_5g_networks_1",
+    "title": "Singtel, Tencent Games to level up cloud gaming with 5G network slicing",
+    "source": "HackerNews",
+    "date": "2025-09-10",
+    "text": "HackerNews discussion: Singtel, Tencent Games to level up cloud gaming with 5G network slicing",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "hn_5g_networks_2",
+    "title": "FikoRE: 5G Network Emulator",
+    "source": "HackerNews",
+    "date": "2026-01-22",
+    "text": "HackerNews discussion: FikoRE: 5G Network Emulator",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "hn_augmented_reality_0",
+    "title": "Meta \u2013 first Ray-Ban smart glasses with in-built augmented reality display",
+    "source": "HackerNews",
+    "date": "2025-09-18",
+    "text": "HackerNews discussion: Meta \u2013 first Ray-Ban smart glasses with in-built augmented reality display",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "hn_augmented_reality_1",
+    "title": "A Year After 'Pok\u00e9mon Go,' Where Are the Augmented-Reality Hits? (2017)",
+    "source": "HackerNews",
+    "date": "2025-10-04",
+    "text": "HackerNews discussion: A Year After 'Pok\u00e9mon Go,' Where Are the Augmented-Reality Hits? (2017)",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "hn_augmented_reality_2",
+    "title": "Visualizing Color Spaces in Augmented Reality with Spectacles",
+    "source": "HackerNews",
+    "date": "2025-12-23",
+    "text": "HackerNews discussion: Visualizing Color Spaces in Augmented Reality with Spectacles",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "hn_digital_twins_0",
+    "title": "Show HN: A Digital Twin of my coffee roaster that runs in the browser",
+    "source": "HackerNews",
+    "date": "2025-10-06",
+    "text": "I built this website to host a data-driven model of my coffee sample roaster.I realized after 20 or so batches on the machine that while the controls are intuitive (heat, fan, and drum speeds), the physics can be unintuitive. I wanted to use my historical roast data to create and tune a model tha",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "hn_digital_twins_1",
+    "title": "Scientists Create Digital Twin of Earth, Accurate to a 1-Kilometer Scale",
+    "source": "HackerNews",
     "date": "2025-11-13",
-    "text": "Supply-chain blockchain pilots move to production across manufacturing.",
-    "technology": "Blockchain"
-  },
-  {
-    "id": "blockchain_2",
-    "title": "Blockchain Update #3",
-    "source": "Wired",
-    "date": "2025-02-22",
-    "text": "New zero-knowledge proof standards aim to improve on-chain privacy.",
-    "technology": "Blockchain"
-  },
-  {
-    "id": "quantum_computing_0",
-    "title": "Quantum Computing Update #1",
-    "source": "IEEE Spectrum",
-    "date": "2025-01-08",
-    "text": "IBM unveils 1000-qubit processor, pushing error-correction milestones.",
-    "technology": "Quantum Computing"
-  },
-  {
-    "id": "quantum_computing_1",
-    "title": "Quantum Computing Update #2",
-    "source": "ArXiv",
-    "date": "2025-09-21",
-    "text": "Quantum-resistant cryptography standards move closer to NIST approval.",
-    "technology": "Quantum Computing"
-  },
-  {
-    "id": "quantum_computing_2",
-    "title": "Quantum Computing Update #3",
-    "source": "ArXiv",
-    "date": "2025-03-08",
-    "text": "Startups explore quantum machine-learning for drug discovery.",
-    "technology": "Quantum Computing"
-  },
-  {
-    "id": "edge_computing_0",
-    "title": "Edge Computing Update #1",
-    "source": "GitHub Trending",
-    "date": "2025-08-14",
-    "text": "Edge AI chips bring real-time inference to IoT devices.",
-    "technology": "Edge Computing"
-  },
-  {
-    "id": "edge_computing_1",
-    "title": "Edge Computing Update #2",
-    "source": "ArXiv",
-    "date": "2025-07-11",
-    "text": "Telecom operators deploy micro data-centres at 5G cell-tower sites.",
-    "technology": "Edge Computing"
-  },
-  {
-    "id": "edge_computing_2",
-    "title": "Edge Computing Update #3",
-    "source": "Wired",
-    "date": "2025-01-09",
-    "text": "Autonomous vehicles leverage multi-access edge computing for safety.",
-    "technology": "Edge Computing"
-  },
-  {
-    "id": "cybersecurity_0",
-    "title": "Cybersecurity Update #1",
-    "source": "IEEE Spectrum",
-    "date": "2025-08-12",
-    "text": "Zero-trust architectures now mandated by federal agencies.",
-    "technology": "Cybersecurity"
-  },
-  {
-    "id": "cybersecurity_1",
-    "title": "Cybersecurity Update #2",
-    "source": "ArXiv",
-    "date": "2025-01-18",
-    "text": "Ransomware attacks target critical infrastructure across Europe.",
-    "technology": "Cybersecurity"
-  },
-  {
-    "id": "cybersecurity_2",
-    "title": "Cybersecurity Update #3",
-    "source": "Wired",
-    "date": "2025-05-14",
-    "text": "AI-driven threat detection reduces mean-time-to-response by 60 %.",
-    "technology": "Cybersecurity"
-  },
-  {
-    "id": "5g_networks_0",
-    "title": "5G Networks Update #1",
-    "source": "IEEE Spectrum",
-    "date": "2025-05-20",
-    "text": "Private 5G networks transform smart-factory automation.",
-    "technology": "5G Networks"
-  },
-  {
-    "id": "5g_networks_1",
-    "title": "5G Networks Update #2",
-    "source": "Wired",
-    "date": "2025-08-05",
-    "text": "5G-Advanced standard promises sub-millisecond latencies.",
-    "technology": "5G Networks"
-  },
-  {
-    "id": "5g_networks_2",
-    "title": "5G Networks Update #3",
-    "source": "IEEE Spectrum",
-    "date": "2025-11-10",
-    "text": "Global 5G subscriptions surpass 2 billion milestone.",
-    "technology": "5G Networks"
-  },
-  {
-    "id": "augmented_reality_0",
-    "title": "Augmented Reality Update #1",
-    "source": "GitHub Trending",
-    "date": "2025-06-14",
-    "text": "AR headsets gain traction in surgical training programs.",
-    "technology": "Augmented Reality"
-  },
-  {
-    "id": "augmented_reality_1",
-    "title": "Augmented Reality Update #2",
-    "source": "ArXiv",
-    "date": "2025-12-13",
-    "text": "Retail brands deploy AR try-on features to boost conversion.",
-    "technology": "Augmented Reality"
-  },
-  {
-    "id": "augmented_reality_2",
-    "title": "Augmented Reality Update #3",
-    "source": "Wired",
-    "date": "2025-07-25",
-    "text": "Apple Vision Pro sparks new wave of spatial computing startups.",
-    "technology": "Augmented Reality"
-  },
-  {
-    "id": "digital_twins_0",
-    "title": "Digital Twins Update #1",
-    "source": "ArXiv",
-    "date": "2025-04-22",
-    "text": "Digital twin platforms reduce factory downtime by 30 %.",
+    "text": "HackerNews discussion: Scientists Create Digital Twin of Earth, Accurate to a 1-Kilometer Scale",
     "technology": "Digital Twins"
   },
   {
-    "id": "digital_twins_1",
-    "title": "Digital Twins Update #2",
-    "source": "GitHub Trending",
-    "date": "2025-03-26",
-    "text": "City-scale digital twins help urban planners model traffic flow.",
+    "id": "hn_digital_twins_2",
+    "title": "I'm building a digital twin to recycle lunar waste for NASA's $3M challenge",
+    "source": "HackerNews",
+    "date": "2025-12-01",
+    "text": "HackerNews discussion: I'm building a digital twin to recycle lunar waste for NASA's $3M challenge",
     "technology": "Digital Twins"
   },
   {
-    "id": "digital_twins_2",
-    "title": "Digital Twins Update #3",
-    "source": "Wired",
-    "date": "2025-06-10",
-    "text": "Energy sector uses digital twins for predictive maintenance of turbines.",
-    "technology": "Digital Twins"
-  },
-  {
-    "id": "green_tech_0",
-    "title": "Green Tech Update #1",
-    "source": "Wired",
-    "date": "2025-06-30",
-    "text": "Solid-state battery breakthroughs promise faster EV charging.",
+    "id": "hn_green_tech_0",
+    "title": "India is using cheap green tech to electrify faster than China",
+    "source": "HackerNews",
+    "date": "2026-02-17",
+    "text": "HackerNews discussion: India is using cheap green tech to electrify faster than China",
     "technology": "Green Tech"
   },
   {
-    "id": "green_tech_1",
-    "title": "Green Tech Update #2",
-    "source": "IEEE Spectrum",
-    "date": "2025-11-28",
-    "text": "Carbon-capture startups secure record venture-capital funding.",
+    "id": "hn_green_tech_1",
+    "title": "Sponges, Sensors, and the True Cost of Green Tech",
+    "source": "HackerNews",
+    "date": "2025-10-17",
+    "text": "HackerNews discussion: Sponges, Sensors, and the True Cost of Green Tech",
     "technology": "Green Tech"
   },
   {
-    "id": "green_tech_2",
-    "title": "Green Tech Update #3",
-    "source": "Wired",
-    "date": "2025-03-08",
-    "text": "Perovskite solar cells achieve new lab-efficiency records.",
+    "id": "hn_green_tech_2",
+    "title": "What Will China's Green-Tech Ambitions Cost the World?",
+    "source": "HackerNews",
+    "date": "2025-09-22",
+    "text": "HackerNews discussion: What Will China's Green-Tech Ambitions Cost the World?",
     "technology": "Green Tech"
   },
   {
-    "id": "large_language_models_0",
-    "title": "Large Language Models Update #1",
-    "source": "Wired",
-    "date": "2025-04-24",
-    "text": "GPT-5 class models demonstrate advanced reasoning capabilities.",
+    "id": "hn_large_language_models_0",
+    "title": "DeepSeek-v3.2: Pushing the frontier of open large language models [pdf]",
+    "source": "HackerNews",
+    "date": "2025-12-01",
+    "text": "https:&#x2F;&#x2F;huggingface.co&#x2F;deepseek-ai&#x2F;DeepSeek-V3.2https:&#x2F;&#x2F;api-docs.deepseek.com&",
     "technology": "Large Language Models"
   },
   {
-    "id": "large_language_models_1",
-    "title": "Large Language Models Update #2",
-    "source": "ArXiv",
-    "date": "2025-07-27",
-    "text": "Open-source LLMs close the gap with proprietary foundation models.",
+    "id": "hn_large_language_models_1",
+    "title": "A History of Large Language Models",
+    "source": "HackerNews",
+    "date": "2025-10-06",
+    "text": "HackerNews discussion: A History of Large Language Models",
     "technology": "Large Language Models"
   },
   {
-    "id": "large_language_models_2",
-    "title": "Large Language Models Update #3",
-    "source": "GitHub Trending",
-    "date": "2025-12-20",
-    "text": "Enterprises fine-tune LLMs on domain-specific corpora for productivity.",
+    "id": "hn_large_language_models_2",
+    "title": "Signs of introspection in large language models",
+    "source": "HackerNews",
+    "date": "2025-10-30",
+    "text": "HackerNews discussion: Signs of introspection in large language models",
     "technology": "Large Language Models"
   }
 ]

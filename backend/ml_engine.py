@@ -7,7 +7,12 @@ import numpy as np
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
-from sklearn.linear_model import LinearRegression
+from statsmodels.tsa.arima.model import ARIMA
+import warnings
+from statsmodels.tools.sm_exceptions import ConvergenceWarning
+
+warnings.simplefilter('ignore', ConvergenceWarning)
+warnings.filterwarnings("ignore")
 
 
 # ── NLP Topic Clustering ──────────────────────────────────────────
@@ -70,11 +75,27 @@ def forecast_trends(trends_df: pd.DataFrame, forecast_months: int = 6) -> dict:
 
     for topic, group in trends_df.groupby("topic"):
         group = group.sort_values("month").reset_index(drop=True)
-        X = np.arange(len(group)).reshape(-1, 1)
+        # X = np.arange(len(group)).reshape(-1, 1) # Not needed for ARIMA
         y = group["mentions"].values.astype(float)
 
-        model = LinearRegression()
-        model.fit(X, y)
+        try:
+            # ARIMA order (1, 1, 1) is a common default for trended time-series
+            model = ARIMA(y, order=(1, 1, 1))
+            model_fit = model.fit()
+            
+            forecast_result = model_fit.get_forecast(steps=forecast_months)
+            pred_mean = forecast_result.predicted_mean
+            conf_int = forecast_result.conf_int(alpha=0.2)  # 80% confidence interval
+            
+            lower_bound = np.maximum(conf_int[:, 0], 0)
+            upper_bound = np.maximum(conf_int[:, 1], 0)
+            pred_mean = np.maximum(pred_mean, 0)
+        except Exception:
+            # Fallback to simple moving average if ARIMA fails to converge
+            pred_mean = np.full(forecast_months, np.mean(y[-3:]))
+            std_dev = np.std(y[-6:]) if len(y) >= 6 else np.std(y)
+            lower_bound = np.maximum(pred_mean - std_dev, 0)
+            upper_bound = pred_mean + std_dev
 
         # Historical fitted values
         historical = [
@@ -83,16 +104,21 @@ def forecast_trends(trends_df: pd.DataFrame, forecast_months: int = 6) -> dict:
         ]
 
         # Forecast future months
-        last_index = len(group)
         last_date = pd.Timestamp(group["month"].iloc[-1] + "-01")
         forecast = []
         for i in range(forecast_months):
-            pred = max(int(model.predict([[last_index + i]])[0]), 0)
             future_date = (last_date + pd.DateOffset(months=i + 1)).strftime("%Y-%m")
-            forecast.append({"month": future_date, "mentions": pred})
+            forecast.append({
+                "month": future_date, 
+                "mentions": int(pred_mean[i]),
+                "lower_bound": int(lower_bound[i]),
+                "upper_bound": int(upper_bound[i])
+            })
 
-        # Annualised growth rate
-        if y[0] > 0:
+        # Annualised growth rate (using trend of last 6 months smoothing vs start of year)
+        if len(y) > 12 and y[-13] > 0:
+             growth_rate = round(((y[-1] / y[-13]) - 1) * 100, 1)
+        elif y[0] > 0:
             growth_rate = round(((y[-1] / y[0]) - 1) * 100, 1)
         else:
             growth_rate = 0.0
