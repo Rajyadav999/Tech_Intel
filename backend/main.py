@@ -10,8 +10,9 @@ from dotenv import load_dotenv
 # Load environment variables (e.g., GEMINI_API_KEY)
 load_dotenv()
 
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import FastAPI, BackgroundTasks, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from data_generator import generate_trend_data, generate_raw_documents
 from ml_engine import cluster_documents, forecast_trends, get_summary
@@ -23,6 +24,8 @@ from storage import (
     load_trends,
     load_clusters,
     load_raw_documents,
+    create_user,
+    verify_user,
 )
 from real_ingester import ingest_all, fetch_wikipedia_trends
 from ai_summarizer import generate_brief
@@ -141,6 +144,34 @@ def get_brief_api(technology: str):
     
     brief = generate_brief(technology, tech_docs)
     return {"technology": technology, "brief": brief}
+
+
+# ── Auth Endpoints ────────────────────────────────────────────────
+
+class SignupRequest(BaseModel):
+    email: str
+    password: str
+    name: str
+    company: str
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+@app.post("/api/signup")
+def signup(req: SignupRequest):
+    user = create_user(req.email, req.password, req.name, req.company)
+    if not user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    # For a real app, generate a JWT token here. We are just returning the user profile.
+    return {"user": user}
+
+@app.post("/api/login")
+def login(req: LoginRequest):
+    user = verify_user(req.email, req.password)
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    return {"user": user}
 
 
 # ── Health check ──────────────────────────────────────────────────

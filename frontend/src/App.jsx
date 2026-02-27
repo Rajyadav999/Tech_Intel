@@ -10,10 +10,15 @@ import AuthModal from './components/AuthModal';
 import Transition from './components/Transition';
 
 export default function App() {
-  const [view, setView] = useState('landing'); // 'landing' | 'transitioning' | 'dashboard'
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem('techintel_user');
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [view, setView] = useState(() => {
+    return localStorage.getItem('techintel_user') ? 'dashboard' : 'landing';
+  }); // 'landing' | 'transitioning' | 'dashboard'
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState('login');
-  const [user, setUser] = useState(null);
 
   /* Scroll reveal observer for landing page */
   useEffect(() => {
@@ -36,6 +41,7 @@ export default function App() {
 
   const handleAuthSuccess = (userData) => {
     setUser(userData);
+    localStorage.setItem('techintel_user', JSON.stringify(userData));
     setShowAuth(false);
     setView('transitioning');
     setTimeout(() => setView('dashboard'), 2200);
@@ -43,6 +49,7 @@ export default function App() {
 
   const handleLogout = () => {
     setUser(null);
+    localStorage.removeItem('techintel_user');
     setView('landing');
   };
 

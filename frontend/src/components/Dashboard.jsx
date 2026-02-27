@@ -10,60 +10,60 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import TopInsights   from './TopInsights';
-import TrendChart    from './TrendChart';
+import TopInsights from './TopInsights';
+import TrendChart from './TrendChart';
 import TopicClusters from './TopicClusters';
-import AIBriefCard   from './AIBriefCard';
-import TrendsPage    from './TrendsPage';
-import ClustersPage  from './ClustersPage';
+import AIBriefCard from './AIBriefCard';
+import TrendsPage from './TrendsPage';
+import ClustersPage from './ClustersPage';
 import ForecastsPage from './ForecastsPage';
 import DocumentsPage from './DocumentsPage';
-import SourcesPage   from './SourcesPage';
-import SettingsPage  from './SettingsPage';
+import SourcesPage from './SourcesPage';
+import SettingsPage from './SettingsPage';
 
 const API = 'http://localhost:8000/api';
 
 const NAV_ITEMS = [
   { section: 'Analytics' },
-  { id: 'dashboard', label: 'Dashboard',      icon: '📊' },
-  { id: 'trends',    label: 'Trends',         icon: '📈' },
-  { id: 'clusters',  label: 'Topic Clusters', icon: '🧠' },
-  { id: 'forecasts', label: 'Forecasts',      icon: '🔮' },
+  { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+  { id: 'trends', label: 'Trends', icon: '📈' },
+  { id: 'clusters', label: 'Topic Clusters', icon: '🧠' },
+  { id: 'forecasts', label: 'Forecasts', icon: '🔮' },
   { section: 'Data' },
-  { id: 'documents', label: 'Documents',      icon: '📄' },
-  { id: 'sources',   label: 'Sources',        icon: '🗄️' },
+  { id: 'documents', label: 'Documents', icon: '📄' },
+  { id: 'sources', label: 'Sources', icon: '🗄️' },
   { section: 'System' },
-  { id: 'settings',  label: 'Settings',       icon: '⚙️' },
+  { id: 'settings', label: 'Settings', icon: '⚙️' },
 ];
 
 const PAGE_TITLES = {
   dashboard: 'Dashboard',
-  trends:    'Trends',
-  clusters:  'Topic Clusters',
+  trends: 'Trends',
+  clusters: 'Topic Clusters',
   forecasts: 'Forecasts',
   documents: 'Documents',
-  sources:   'Sources',
-  settings:  'Settings',
+  sources: 'Sources',
+  settings: 'Settings',
 };
 
 const PAGE_SUBTITLES = {
   dashboard: 'Overview  ·  Real-time Intelligence',
-  trends:    'Historical data & forecasts',
-  clusters:  'NLP-powered topic discovery',
+  trends: 'Historical data & forecasts',
+  clusters: 'NLP-powered topic discovery',
   forecasts: 'Predictive analytics',
   documents: 'Raw document corpus',
-  sources:   'Data provider management',
-  settings:  'Platform configuration',
+  sources: 'Data provider management',
+  settings: 'Platform configuration',
 };
 
 export default function Dashboard({ user, onLogout }) {
-  const [page, setPage]           = useState('dashboard');
-  const [trends, setTrends]       = useState(null);
-  const [clusters, setClusters]   = useState(null);
-  const [summary, setSummary]     = useState(null);
+  const [page, setPage] = useState('dashboard');
+  const [trends, setTrends] = useState(null);
+  const [clusters, setClusters] = useState(null);
+  const [summary, setSummary] = useState(null);
   const [documents, setDocuments] = useState([]);
-  const [loading, setLoading]     = useState(true);
-  const [error, setError]         = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const fetchData = async () => {
     setLoading(true);
@@ -119,12 +119,12 @@ export default function Dashboard({ user, onLogout }) {
   // ── Page content router ──
   const renderPage = () => {
     switch (page) {
-      case 'trends':    return <TrendsPage trends={trends} />;
-      case 'clusters':  return <ClustersPage clusters={clusters} />;
+      case 'trends': return <TrendsPage trends={trends} />;
+      case 'clusters': return <ClustersPage clusters={clusters} />;
       case 'forecasts': return <ForecastsPage trends={trends} />;
       case 'documents': return <DocumentsPage />;
-      case 'sources':   return <SourcesPage documents={documents} />;
-      case 'settings':  return <SettingsPage />;
+      case 'sources': return <SourcesPage documents={documents} />;
+      case 'settings': return <SettingsPage />;
       default:
         return (
           <>
@@ -204,14 +204,18 @@ export default function Dashboard({ user, onLogout }) {
 
         <div className="sidebar-footer">
           {user && (
-            <div className="sidebar-user">
-              <div className="user-avatar">
-                {user.name?.charAt(0).toUpperCase() ?? user.email?.charAt(0).toUpperCase() ?? '?'}
+            <div className="sidebar-user-container" style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '10px' }}>
+              <div className="sidebar-user" style={{ marginBottom: 0 }}>
+                <div className="sidebar-user-avatar">
+                  {user.name?.charAt(0).toUpperCase() ?? user.email?.charAt(0).toUpperCase() ?? '?'}
+                </div>
+                <div className="sidebar-user-info">
+                  <span className="sidebar-user-name">{user.name ?? user.email}</span>
+                </div>
               </div>
-              <div className="user-info">
-                <span className="user-name">{user.name ?? user.email}</span>
-                <button className="logout-btn" onClick={onLogout}>Sign out</button>
-              </div>
+              <button className="sidebar-logout" style={{ justifyContent: 'center' }} onClick={onLogout}>
+                Logout
+              </button>
             </div>
           )}
           <div className="sidebar-status">
@@ -223,14 +227,14 @@ export default function Dashboard({ user, onLogout }) {
 
       {/* ── Main content ── */}
       <div className="main-container">
-        <header className="header">
-          <div className="header-left">
+        <header className="dash-header-bar">
+          <div className="dash-header-left">
             <h2>{PAGE_TITLES[page]}</h2>
-            <span className="header-breadcrumb">{PAGE_SUBTITLES[page]}</span>
+            <span className="dash-header-breadcrumb">{PAGE_SUBTITLES[page]}</span>
           </div>
-          <div className="header-right">
+          <div className="dash-header-right">
             {page === 'dashboard' && (
-              <button className="export-btn" onClick={handleExportPDF}>
+              <button className="btn-outline btn-sm" onClick={handleExportPDF}>
                 📥 Download Report
               </button>
             )}

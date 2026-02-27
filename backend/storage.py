@@ -18,6 +18,15 @@ def init_db():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            email         TEXT    UNIQUE NOT NULL,
+            password_hash TEXT    NOT NULL,
+            name          TEXT    NOT NULL,
+            company       TEXT
+        )
+    """)
+    cur.execute("""
         CREATE TABLE IF NOT EXISTS topic_trends (
             id        INTEGER PRIMARY KEY AUTOINCREMENT,
             topic     TEXT    NOT NULL,
@@ -44,6 +53,48 @@ def save_trends(trends_df):
     trends_df.to_sql("topic_trends", conn, if_exists="replace", index=False)
     conn.commit()
     conn.close()
+
+
+import hashlib
+import os as _os
+
+def hash_password(password: str) -> str:
+    """Hash a password for storing."""
+    salt = b'techintel_salt_123' # Basic salt for simplicity
+    return hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000).hex()
+
+def create_user(email: str, password: str, name: str, company: str) -> dict | None:
+    """Create a new user. Returns user dict on success, None if email exists."""
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    pwd_hash = hash_password(password)
+    try:
+        cur.execute(
+            "INSERT INTO users (email, password_hash, name, company) VALUES (?,?,?,?)",
+            (email, pwd_hash, name, company)
+        )
+        conn.commit()
+        user = {"email": email, "name": name, "company": company}
+    except sqlite3.IntegrityError:
+        user = None # Email already exists
+    finally:
+        conn.close()
+    return user
+
+def verify_user(email: str, password: str) -> dict | None:
+    """Verify user login. Returns user dict on success, None on failure."""
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    pwd_hash = hash_password(password)
+    cur.execute(
+        "SELECT email, name, company FROM users WHERE email = ? AND password_hash = ?",
+        (email, pwd_hash)
+    )
+    row = cur.fetchone()
+    conn.close()
+    if row:
+        return {"email": row[0], "name": row[1], "company": row[2]}
+    return None
 
 
 def save_clusters(clusters):

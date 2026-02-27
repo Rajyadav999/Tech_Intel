@@ -66,23 +66,34 @@ export default function AIBriefCard({ trends }) {
                     <span className="ai-model-badge">AI Powered</span>
                 </div>
 
-                <div style={{ display: 'flex', gap: '12px' }}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                     <select
                         className="ai-tech-select"
                         value={selectedTech}
                         onChange={e => setSelectedTech(e.target.value)}
                         disabled={loading}
+                        style={{
+                            background: 'rgba(255, 255, 255, 0.05)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            color: '#f1f5f9',
+                            padding: '8px 16px',
+                            borderRadius: '8px',
+                            outline: 'none',
+                            cursor: 'pointer',
+                            fontFamily: 'Inter, sans-serif',
+                            fontSize: '0.9rem'
+                        }}
                     >
                         {topics.map(t => (
-                            <option key={t} value={t}>{t}</option>
+                            <option key={t} value={t} style={{ background: '#0a0f1e', color: '#f1f5f9' }}>{t}</option>
                         ))}
                     </select>
 
                     <button
-                        className="export-btn"
+                        className="btn-outline btn-sm"
                         onClick={handleGenerate}
                         disabled={loading}
-                        style={{ padding: '6px 16px', margin: 0 }}
+                        style={{ margin: 0 }}
                     >
                         {loading ? 'Thinking...' : 'Generate ⚡'}
                     </button>
