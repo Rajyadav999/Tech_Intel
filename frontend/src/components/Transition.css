@@ -1,0 +1,115 @@
+.transition-screen {
+  position: fixed;
+  inset: 0;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  animation: tsFadeIn 0.4s ease;
+}
+
+@keyframes tsFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.transition-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.transition-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.transition-logo {
+  width: 80px;
+  height: 80px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  animation: logoPulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+}
+
+@keyframes logoPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); transform: scale(1); }
+  50% { box-shadow: 0 0 60px rgba(99, 102, 241, 0.5); transform: scale(1.05); }
+}
+
+.transition-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.transition-sub {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.transition-bar {
+  width: 240px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.transition-bar-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  border-radius: 2px;
+  animation: barFill 2s ease-in-out forwards;
+}
+
+@keyframes barFill {
+  0%   { width: 0%; }
+  40%  { width: 55%; }
+  80%  { width: 85%; }
+  100% { width: 100%; }
+}
+
+.transition-steps {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.t-step {
+  font-size: 0.72rem;
+  color: #34d399;
+  font-weight: 500;
+}
+
+.t-step-active {
+  color: #6366f1;
+  animation: stepBlink 0.8s ease infinite;
+}
+
+.t-step-dim { color: #64748b; }
+
+@keyframes stepBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

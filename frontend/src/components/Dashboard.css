@@ -1,0 +1,6 @@
+/* Dashboard.css — minimal overrides, main layout is in index.css */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
