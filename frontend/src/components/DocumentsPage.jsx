@@ -59,11 +59,6 @@ export default function DocumentsPage() {
                             <p className="doc-text">{doc.text}</p>
                             <div className="doc-card-footer">
                                 <span className="doc-tech-badge">{doc.technology}</span>
-                                {doc.sentiment_label && (
-                                    <span className={`doc-sentiment-badge ${doc.sentiment_label.toLowerCase()}`}>
-                                        {doc.sentiment_label === 'Positive' ? '🟢' : doc.sentiment_label === 'Negative' ? '🔴' : '⚪'} {doc.sentiment_label}
-                                    </span>
-                                )}
                             </div>
                         </div>
                     ))}

@@ -6,16 +6,14 @@ const CARD_CONFIG = [
   { key: 'total_topics', label: 'Total Topics', icon: '📊', format: v => v },
   { key: 'total_mentions', label: 'Total Mentions', icon: '📈', format: v => v?.toLocaleString() },
   { key: 'top_rising_1', label: 'Hottest Topic', icon: '🔥' },
-  { key: 'overall_sentiment', label: 'Market Sentiment', icon: '🌍' },
+  { key: 'top_declining_1', label: 'Cooling Down', icon: '❄️' },
 ];
 
 export default function TopInsights({ summary }) {
   if (!summary) return null;
 
   const cards = CARD_CONFIG.map(cfg => {
-    let value = '—';
-    let change = '';
-    let isPositive = null; // null means neutral/no color Arrow
+    let value, change, isPositive;
 
     if (cfg.key === 'total_topics') {
       value = cfg.format(summary.total_topics);
@@ -30,18 +28,14 @@ export default function TopInsights({ summary }) {
       value = t.topic;
       change = `+${t.growth_rate}%`;
       isPositive = true;
-    } else if (cfg.key === 'overall_sentiment') {
-      value = summary.overall_sentiment || 'Neutral';
-      if (value === 'Positive') {
-        change = 'Bullish signals';
-        isPositive = true;
-      } else if (value === 'Negative') {
-        change = 'Bearish signals';
-        isPositive = false;
-      } else {
-        change = 'Mixed signals';
-        isPositive = null;
-      }
+    } else if (cfg.key === 'top_declining_1' && summary.top_declining?.[0]) {
+      const t = summary.top_declining[0];
+      value = t.topic;
+      change = `${t.growth_rate}%`;
+      isPositive = false;
+    } else {
+      value = '—';
+      change = '';
     }
 
     return { ...cfg, value, change, isPositive };
@@ -55,13 +49,12 @@ export default function TopInsights({ summary }) {
             <span className="card-label">{card.label}</span>
             <span className="card-icon">{card.icon}</span>
           </div>
-          <div className={`card-value ${card.key === 'overall_sentiment' ? card.value.toLowerCase() : ''}`}>
-            {card.value}
+          <div className="card-value">
+            {typeof card.value === 'number' ? card.value : card.value}
           </div>
           {card.change && (
-            <div className={`card-change ${card.isPositive === true ? 'positive' : card.isPositive === false ? 'negative' : 'neutral'}`}>
-              {card.isPositive === true ? '↑ ' : card.isPositive === false ? '↓ ' : '• '}
-              {card.change}
+            <div className={`card-change ${card.isPositive ? 'positive' : 'negative'}`}>
+              {card.isPositive ? '↑' : '↓'} {card.change}
             </div>
           )}
         </div>
