@@ -1,0 +1,6 @@
+/* App.css — component-level overrides (kept minimal, main styles in index.css) */
+
+.App {
+  display: flex;
+  min-height: 100vh;
+}

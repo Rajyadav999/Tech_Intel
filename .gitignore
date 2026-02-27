@@ -1,0 +1,11 @@
+myenv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+node_modules/
+dist/
+build/
+.vscode/
+.env

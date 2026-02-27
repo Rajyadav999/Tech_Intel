@@ -1,0 +1,242 @@
+[
+  {
+    "id": "artificial_intelligence_0",
+    "title": "Artificial Intelligence Update #1",
+    "source": "Wired",
+    "date": "2025-12-14",
+    "text": "New breakthroughs in deep learning architectures are reshaping enterprise AI.",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "artificial_intelligence_1",
+    "title": "Artificial Intelligence Update #2",
+    "source": "IEEE Spectrum",
+    "date": "2025-10-12",
+    "text": "AI adoption in healthcare diagnostics has doubled year-over-year.",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "artificial_intelligence_2",
+    "title": "Artificial Intelligence Update #3",
+    "source": "GitHub Trending",
+    "date": "2025-02-26",
+    "text": "Governments release new regulatory frameworks for responsible AI deployment.",
+    "technology": "Artificial Intelligence"
+  },
+  {
+    "id": "blockchain_0",
+    "title": "Blockchain Update #1",
+    "source": "IEEE Spectrum",
+    "date": "2025-02-06",
+    "text": "Decentralised finance protocols see unprecedented institutional investment.",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "blockchain_1",
+    "title": "Blockchain Update #2",
+    "source": "IEEE Spectrum",
+    "date": "2025-11-13",
+    "text": "Supply-chain blockchain pilots move to production across manufacturing.",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "blockchain_2",
+    "title": "Blockchain Update #3",
+    "source": "Wired",
+    "date": "2025-02-22",
+    "text": "New zero-knowledge proof standards aim to improve on-chain privacy.",
+    "technology": "Blockchain"
+  },
+  {
+    "id": "quantum_computing_0",
+    "title": "Quantum Computing Update #1",
+    "source": "IEEE Spectrum",
+    "date": "2025-01-08",
+    "text": "IBM unveils 1000-qubit processor, pushing error-correction milestones.",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "quantum_computing_1",
+    "title": "Quantum Computing Update #2",
+    "source": "ArXiv",
+    "date": "2025-09-21",
+    "text": "Quantum-resistant cryptography standards move closer to NIST approval.",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "quantum_computing_2",
+    "title": "Quantum Computing Update #3",
+    "source": "ArXiv",
+    "date": "2025-03-08",
+    "text": "Startups explore quantum machine-learning for drug discovery.",
+    "technology": "Quantum Computing"
+  },
+  {
+    "id": "edge_computing_0",
+    "title": "Edge Computing Update #1",
+    "source": "GitHub Trending",
+    "date": "2025-08-14",
+    "text": "Edge AI chips bring real-time inference to IoT devices.",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "edge_computing_1",
+    "title": "Edge Computing Update #2",
+    "source": "ArXiv",
+    "date": "2025-07-11",
+    "text": "Telecom operators deploy micro data-centres at 5G cell-tower sites.",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "edge_computing_2",
+    "title": "Edge Computing Update #3",
+    "source": "Wired",
+    "date": "2025-01-09",
+    "text": "Autonomous vehicles leverage multi-access edge computing for safety.",
+    "technology": "Edge Computing"
+  },
+  {
+    "id": "cybersecurity_0",
+    "title": "Cybersecurity Update #1",
+    "source": "IEEE Spectrum",
+    "date": "2025-08-12",
+    "text": "Zero-trust architectures now mandated by federal agencies.",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "cybersecurity_1",
+    "title": "Cybersecurity Update #2",
+    "source": "ArXiv",
+    "date": "2025-01-18",
+    "text": "Ransomware attacks target critical infrastructure across Europe.",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "cybersecurity_2",
+    "title": "Cybersecurity Update #3",
+    "source": "Wired",
+    "date": "2025-05-14",
+    "text": "AI-driven threat detection reduces mean-time-to-response by 60 %.",
+    "technology": "Cybersecurity"
+  },
+  {
+    "id": "5g_networks_0",
+    "title": "5G Networks Update #1",
+    "source": "IEEE Spectrum",
+    "date": "2025-05-20",
+    "text": "Private 5G networks transform smart-factory automation.",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "5g_networks_1",
+    "title": "5G Networks Update #2",
+    "source": "Wired",
+    "date": "2025-08-05",
+    "text": "5G-Advanced standard promises sub-millisecond latencies.",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "5g_networks_2",
+    "title": "5G Networks Update #3",
+    "source": "IEEE Spectrum",
+    "date": "2025-11-10",
+    "text": "Global 5G subscriptions surpass 2 billion milestone.",
+    "technology": "5G Networks"
+  },
+  {
+    "id": "augmented_reality_0",
+    "title": "Augmented Reality Update #1",
+    "source": "GitHub Trending",
+    "date": "2025-06-14",
+    "text": "AR headsets gain traction in surgical training programs.",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "augmented_reality_1",
+    "title": "Augmented Reality Update #2",
+    "source": "ArXiv",
+    "date": "2025-12-13",
+    "text": "Retail brands deploy AR try-on features to boost conversion.",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "augmented_reality_2",
+    "title": "Augmented Reality Update #3",
+    "source": "Wired",
+    "date": "2025-07-25",
+    "text": "Apple Vision Pro sparks new wave of spatial computing startups.",
+    "technology": "Augmented Reality"
+  },
+  {
+    "id": "digital_twins_0",
+    "title": "Digital Twins Update #1",
+    "source": "ArXiv",
+    "date": "2025-04-22",
+    "text": "Digital twin platforms reduce factory downtime by 30 %.",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "digital_twins_1",
+    "title": "Digital Twins Update #2",
+    "source": "GitHub Trending",
+    "date": "2025-03-26",
+    "text": "City-scale digital twins help urban planners model traffic flow.",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "digital_twins_2",
+    "title": "Digital Twins Update #3",
+    "source": "Wired",
+    "date": "2025-06-10",
+    "text": "Energy sector uses digital twins for predictive maintenance of turbines.",
+    "technology": "Digital Twins"
+  },
+  {
+    "id": "green_tech_0",
+    "title": "Green Tech Update #1",
+    "source": "Wired",
+    "date": "2025-06-30",
+    "text": "Solid-state battery breakthroughs promise faster EV charging.",
+    "technology": "Green Tech"
+  },
+  {
+    "id": "green_tech_1",
+    "title": "Green Tech Update #2",
+    "source": "IEEE Spectrum",
+    "date": "2025-11-28",
+    "text": "Carbon-capture startups secure record venture-capital funding.",
+    "technology": "Green Tech"
+  },
+  {
+    "id": "green_tech_2",
+    "title": "Green Tech Update #3",
+    "source": "Wired",
+    "date": "2025-03-08",
+    "text": "Perovskite solar cells achieve new lab-efficiency records.",
+    "technology": "Green Tech"
+  },
+  {
+    "id": "large_language_models_0",
+    "title": "Large Language Models Update #1",
+    "source": "Wired",
+    "date": "2025-04-24",
+    "text": "GPT-5 class models demonstrate advanced reasoning capabilities.",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "large_language_models_1",
+    "title": "Large Language Models Update #2",
+    "source": "ArXiv",
+    "date": "2025-07-27",
+    "text": "Open-source LLMs close the gap with proprietary foundation models.",
+    "technology": "Large Language Models"
+  },
+  {
+    "id": "large_language_models_2",
+    "title": "Large Language Models Update #3",
+    "source": "GitHub Trending",
+    "date": "2025-12-20",
+    "text": "Enterprises fine-tune LLMs on domain-specific corpora for productivity.",
+    "technology": "Large Language Models"
+  }
+]
