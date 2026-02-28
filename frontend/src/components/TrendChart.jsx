@@ -15,7 +15,7 @@ import {
     Legend,
     Filler,
 } from 'chart.js';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, Component } from 'react';
 
 ChartJS.register(
     CategoryScale, LinearScale, PointElement, LineElement,
@@ -37,6 +37,29 @@ const COLORS = [
 
 const FILTER_OPTIONS = ['All', 'Top 5', 'Top 3'];
 
+// ── Error Boundary so one bad topic never blanks the page ─────────
+class ChartErrorBoundary extends Component {
+    constructor(props) { super(props); this.state = { hasError: false, error: null }; }
+    static getDerivedStateFromError(error) { return { hasError: true, error }; }
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div className="chart-card" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 200 }}>
+                    <p style={{ color: '#94a3b8', fontSize: 14 }}>⚠️ Chart unavailable — {String(this.state.error?.message || 'unknown error')}</p>
+                </div>
+            );
+        }
+        return this.props.children;
+    }
+}
+
+// ── Helper: build a value-map keyed by month for fast lookup ──────
+function toMonthMap(points, field) {
+    const map = {};
+    for (const p of points) map[p.month] = p[field] ?? null;
+    return map;
+}
+
 export default function TrendChart({ trends }) {
     const [filter, setFilter] = useState('Top 5');
 
@@ -44,7 +67,6 @@ export default function TrendChart({ trends }) {
     const visibleTopics = useMemo(() => {
         if (!topics.length) return [];
         if (filter === 'All') return topics;
-        // Sort by growth_rate descending and take top N
         const sorted = [...topics].sort(
             (a, b) => (trends[b]?.growth_rate || 0) - (trends[a]?.growth_rate || 0)
         );
@@ -54,31 +76,61 @@ export default function TrendChart({ trends }) {
 
     if (!trends || !topics.length) return null;
 
-    // Build unified labels (historical months + forecast months)
-    const firstTopic = trends[topics[0]];
-    const allLabels = [
-        ...firstTopic.historical.map(p => p.month),
-        ...firstTopic.forecast.map(p => p.month),
-    ];
-    const histLen = firstTopic.historical.length;
+    // ── Build a unified sorted label set from ALL visible topics ──
+    const labelSet = new Set();
+    for (const topic of visibleTopics) {
+        const t = trends[topic];
+        if (!t) continue;
+        (t.historical || []).forEach(p => labelSet.add(p.month));
+        (t.forecast || []).forEach(p => labelSet.add(p.month));
+    }
+    const allLabels = [...labelSet].sort();
 
-    // Build datasets — solid for historical, dashed for forecast
+    // ── Build datasets using month maps (handles ragged arrays) ───
     const datasets = visibleTopics.flatMap((topic, i) => {
         const t = trends[topic];
+        if (!t) return [];
         const color = COLORS[i % COLORS.length];
 
-        // Historical dataset
-        const histData = t.historical.map(p => p.mentions);
-        const forecastPad = new Array(t.forecast.length).fill(null);
+        const histMap = toMonthMap(t.historical || [], 'mentions');
+        const foreMap = toMonthMap(t.forecast || [], 'mentions');
+        const loMap = toMonthMap(t.forecast || [], 'lower_bound');
+        const hiMap = toMonthMap(t.forecast || [], 'upper_bound');
 
-        // Forecast dataset — starts from last historical point for continuity
-        const histPad = new Array(histLen - 1).fill(null);
-        const forecastData = [t.historical[histLen - 1].mentions, ...t.forecast.map(p => p.mentions)];
+        // Last historical value — used as the bridge point into forecast
+        const lastHistMonth = (t.historical || []).at(-1)?.month;
+        const lastHistVal = lastHistMonth != null ? (histMap[lastHistMonth] ?? null) : null;
+        const bridgeVal = lastHistVal != null ? Math.round(lastHistVal * 10) / 10 : null;
+
+        const round = v => (v != null ? Math.round(v * 10) / 10 : null);
+
+        const histData = allLabels.map(m => {
+            const v = histMap[m];
+            return v != null ? round(v) : null;
+        });
+
+        const foreData = allLabels.map(m => {
+            if (m === lastHistMonth) return bridgeVal;
+            const v = foreMap[m];
+            return v != null ? round(v) : null;
+        });
+
+        const hiData = allLabels.map(m => {
+            if (m === lastHistMonth) return bridgeVal;
+            const v = hiMap[m];
+            return v != null ? round(v) : null;
+        });
+
+        const loData = allLabels.map(m => {
+            if (m === lastHistMonth) return bridgeVal;
+            const v = loMap[m];
+            return v != null ? round(v) : null;
+        });
 
         return [
             {
                 label: topic,
-                data: [...histData, ...forecastPad],
+                data: histData,
                 borderColor: color.line,
                 backgroundColor: color.bg,
                 borderWidth: 2,
@@ -86,10 +138,11 @@ export default function TrendChart({ trends }) {
                 pointHoverRadius: 4,
                 tension: 0.35,
                 fill: true,
+                spanGaps: true,
             },
             {
                 label: `${topic} (forecast)`,
-                data: [...histPad, ...forecastData],
+                data: foreData,
                 borderColor: color.line,
                 backgroundColor: 'transparent',
                 borderWidth: 2,
@@ -98,26 +151,29 @@ export default function TrendChart({ trends }) {
                 pointHoverRadius: 4,
                 tension: 0.35,
                 fill: false,
+                spanGaps: true,
             },
             {
                 label: `${topic} (upper)`,
-                data: [...histPad, t.historical[histLen - 1].mentions, ...t.forecast.map(p => p.upper_bound)],
+                data: hiData,
                 borderColor: 'transparent',
-                backgroundColor: color.bg.replace('0.10', '0.15'), // slightly darker for confidence interval
+                backgroundColor: color.bg.replace('0.10', '0.15'),
                 pointRadius: 0,
                 pointHoverRadius: 0,
                 fill: '+1',
                 tension: 0.35,
+                spanGaps: true,
             },
             {
                 label: `${topic} (lower)`,
-                data: [...histPad, t.historical[histLen - 1].mentions, ...t.forecast.map(p => p.lower_bound)],
+                data: loData,
                 borderColor: 'transparent',
                 backgroundColor: 'transparent',
                 pointRadius: 0,
                 pointHoverRadius: 0,
                 fill: false,
                 tension: 0.35,
+                spanGaps: true,
             },
         ];
     });
@@ -154,7 +210,7 @@ export default function TrendChart({ trends }) {
         scales: {
             x: {
                 grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
-                ticks: { color: '#64748b', font: { family: 'Inter', size: 10 }, maxRotation: 45 },
+                ticks: { color: '#64748b', font: { family: 'Inter', size: 10 }, maxRotation: 45, maxTicksLimit: 24 },
             },
             y: {
                 grid: { color: 'rgba(255,255,255,0.04)', drawBorder: false },
@@ -165,26 +221,28 @@ export default function TrendChart({ trends }) {
     };
 
     return (
-        <div className="chart-card">
-            <div className="chart-card-header">
-                <h3>
-                    📈 Technology Trends <span className="chart-badge">Time-Series</span>
-                </h3>
-                <div className="chart-filters">
-                    {FILTER_OPTIONS.map(f => (
-                        <button
-                            key={f}
-                            className={`filter-btn ${filter === f ? 'active' : ''}`}
-                            onClick={() => setFilter(f)}
-                        >
-                            {f}
-                        </button>
-                    ))}
+        <ChartErrorBoundary>
+            <div className="chart-card">
+                <div className="chart-card-header">
+                    <h3>
+                        📈 Technology Trends <span className="chart-badge">Time-Series</span>
+                    </h3>
+                    <div className="chart-filters">
+                        {FILTER_OPTIONS.map(f => (
+                            <button
+                                key={f}
+                                className={`filter-btn ${filter === f ? 'active' : ''}`}
+                                onClick={() => setFilter(f)}
+                            >
+                                {f}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+                <div className="chart-wrapper trend-chart-wrapper">
+                    <Line data={data} options={options} />
                 </div>
             </div>
-            <div className="chart-wrapper trend-chart-wrapper">
-                <Line data={data} options={options} />
-            </div>
-        </div>
+        </ChartErrorBoundary>
     );
 }

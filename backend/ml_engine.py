@@ -63,10 +63,47 @@ def cluster_documents(documents: list[dict], n_clusters: int = 5) -> list[dict]:
 
 # ── Time-Series Forecasting ──────────────────────────────────────
 
+def _best_arima(y: np.ndarray, forecast_months: int):
+    """
+    Try a small grid of ARIMA(p,d,q) orders and pick the one with the lowest AIC.
+    Candidates: p in [0,1,2], d in [0,1], q in [0,1,2].
+    Falls back to a 3-month moving-average flat forecast if all models fail.
+    """
+    best_aic = float("inf")
+    best_result = None
+
+    for p in (2, 1, 0):
+        for d in (1, 0):
+            for q in (2, 1, 0):
+                try:
+                    m = ARIMA(y, order=(p, d, q))
+                    fit = m.fit()
+                    if fit.aic < best_aic:
+                        best_aic = fit.aic
+                        best_result = fit
+                except Exception:
+                    continue
+
+    if best_result is not None:
+        fc = best_result.get_forecast(steps=forecast_months)
+        pred = np.maximum(fc.predicted_mean, 0)
+        ci = fc.conf_int(alpha=0.2)
+        lo = np.maximum(ci[:, 0], 0)
+        hi = np.maximum(ci[:, 1], 0)
+        return pred, lo, hi
+
+    # Hard fallback: flat forecast at recent mean
+    flat = np.full(forecast_months, max(np.mean(y[-3:]), 0))
+    std = np.std(y[-6:]) if len(y) >= 6 else np.std(y)
+    return flat, np.maximum(flat - std, 0), flat + std
+
+
 def forecast_trends(trends_df: pd.DataFrame, forecast_months: int = 6) -> dict:
     """
-    For each technology topic in trends_df, fit a simple linear
-    regression on monthly mentions and extrapolate forward.
+    For each technology topic in trends_df:
+      1. Apply a 3-month rolling average to smooth noise.
+      2. Fit ARIMA with automatic order selection (lowest AIC).
+      3. Compute a momentum-weighted growth rate from the last 6 months.
 
     Returns a dict keyed by topic:
       { topic: { historical: [...], forecast: [...], growth_rate } }
@@ -75,51 +112,43 @@ def forecast_trends(trends_df: pd.DataFrame, forecast_months: int = 6) -> dict:
 
     for topic, group in trends_df.groupby("topic"):
         group = group.sort_values("month").reset_index(drop=True)
-        # X = np.arange(len(group)).reshape(-1, 1) # Not needed for ARIMA
-        y = group["mentions"].values.astype(float)
+        raw_y = group["mentions"].values.astype(float)
 
-        try:
-            # ARIMA order (1, 1, 1) is a common default for trended time-series
-            model = ARIMA(y, order=(1, 1, 1))
-            model_fit = model.fit()
-            
-            forecast_result = model_fit.get_forecast(steps=forecast_months)
-            pred_mean = forecast_result.predicted_mean
-            conf_int = forecast_result.conf_int(alpha=0.2)  # 80% confidence interval
-            
-            lower_bound = np.maximum(conf_int[:, 0], 0)
-            upper_bound = np.maximum(conf_int[:, 1], 0)
-            pred_mean = np.maximum(pred_mean, 0)
-        except Exception:
-            # Fallback to simple moving average if ARIMA fails to converge
-            pred_mean = np.full(forecast_months, np.mean(y[-3:]))
-            std_dev = np.std(y[-6:]) if len(y) >= 6 else np.std(y)
-            lower_bound = np.maximum(pred_mean - std_dev, 0)
-            upper_bound = pred_mean + std_dev
+        # ── 1. Smooth with 3-month centred rolling average ──────────
+        series = pd.Series(raw_y)
+        smoothed = series.rolling(window=3, min_periods=1, center=True).mean().values
 
-        # Historical fitted values
+        # ── 2. Fit best ARIMA via AIC grid search ───────────────────
+        pred_mean, lower_bound, upper_bound = _best_arima(smoothed, forecast_months)
+
+        # ── 3. Build historical output (raw values, unsmoothed) ─────
         historical = [
             {"month": row["month"], "mentions": int(row["mentions"])}
             for _, row in group.iterrows()
         ]
 
-        # Forecast future months
+        # ── 4. Build forecast output ─────────────────────────────────
         last_date = pd.Timestamp(group["month"].iloc[-1] + "-01")
         forecast = []
         for i in range(forecast_months):
             future_date = (last_date + pd.DateOffset(months=i + 1)).strftime("%Y-%m")
             forecast.append({
-                "month": future_date, 
+                "month": future_date,
                 "mentions": int(pred_mean[i]),
                 "lower_bound": int(lower_bound[i]),
-                "upper_bound": int(upper_bound[i])
+                "upper_bound": int(upper_bound[i]),
             })
 
-        # Annualised growth rate (using trend of last 6 months smoothing vs start of year)
-        if len(y) > 12 and y[-13] > 0:
-             growth_rate = round(((y[-1] / y[-13]) - 1) * 100, 1)
-        elif y[0] > 0:
-            growth_rate = round(((y[-1] / y[0]) - 1) * 100, 1)
+        # ── 5. Momentum-weighted growth rate ─────────────────────────
+        # Use the smoothed series for more stable growth calculation.
+        # Weights: recent months count more (linear ramp over last 6 months).
+        n = min(6, len(smoothed))
+        recent = smoothed[-n:]
+        baseline = np.mean(smoothed[: max(1, len(smoothed) - n)])
+        if baseline > 0:
+            weights = np.linspace(0.5, 1.0, n)
+            weighted_recent = np.average(recent, weights=weights)
+            growth_rate = round(((weighted_recent / baseline) - 1) * 100, 1)
         else:
             growth_rate = 0.0
 

@@ -27,7 +27,7 @@ from storage import (
     create_user,
     verify_user,
 )
-from real_ingester import ingest_all, fetch_wikipedia_trends, search_all_sources
+from real_ingester import ingest_all, fetch_composite_trends, search_all_sources
 from ai_summarizer import generate_brief
 
 # ── Initialise app ────────────────────────────────────────────────
@@ -61,12 +61,12 @@ def startup_pipeline():
         print(f"⚠ Real API ingestion failed ({e}). Falling back to synthetic data generator...")
         raw_docs = generate_raw_documents(count_per_tech=3)
 
-    # Note: Trend data remains synthetic as live historical multi-year scraping requires complex APIs
+    # Use composite trends (Wikipedia + arXiv) for better accuracy.
     try:
-        trends_df = fetch_wikipedia_trends(months=24)
-        print(f"✅ Successfully fetched historical Wikipedia pageviews for {len(trends_df['topic'].unique())} topics.")
+        trends_df = fetch_composite_trends(months=48)
+        print(f"✅ Composite trends built for {len(trends_df['topic'].unique())} topics using Wikipedia + arXiv signals.")
     except Exception as e:
-        print(f"⚠ Wikipedia trend fetch failed ({e}). Falling back to synthetic trend generator...")
+        print(f"⚠ Composite trend fetch failed ({e}). Falling back to synthetic trend generator...")
         trends_df = generate_trend_data(months=24)
 
     # 3. Persist raw data

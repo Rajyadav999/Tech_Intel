@@ -266,6 +266,55 @@ WIKI_URL = (
     "en.wikipedia/all-access/all-agents/{}/monthly/{}/{}"
 )
 
+def _resolve_wiki_article(tech: str, wiki_map: dict) -> str | None:
+    """
+    Resolve a tech name to the correct Wikipedia article title.
+    Strategy:
+      1. Check predefined wiki_map
+      2. Try common case variants directly against the pageviews API
+      3. Fall back to the Wikipedia OpenSearch API
+    Returns the article title, or None if nothing resolves.
+    """
+    if tech in wiki_map:
+        return wiki_map[tech]
+
+    headers = {"User-Agent": "TechIntel/1.0 (https://github.com/example/techintel)"}
+    check_url = (
+        "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"
+        "en.wikipedia/all-access/all-agents/{}/monthly/20240101/20240201"
+    )
+
+    # Common case variants (deduplicated, order preserved)
+    raw_candidates = [
+        "_".join(w.capitalize() for w in tech.split()),  # WebAssembly
+        tech.title().replace(" ", "_"),                   # Webassembly
+        tech.replace(" ", "_"),                           # webAssembly (original)
+    ]
+    seen: set[str] = set()
+    candidates = [c for c in raw_candidates if not (c in seen or seen.add(c))]
+
+    for candidate in candidates:
+        try:
+            r = requests.get(check_url.format(candidate), headers=headers, timeout=5)
+            if r.status_code == 200:
+                return candidate
+        except Exception:
+            pass
+
+    # Wikipedia OpenSearch — finds canonical article title
+    try:
+        params = {"action": "opensearch", "search": tech, "limit": 1, "namespace": 0, "format": "json"}
+        r = requests.get("https://en.wikipedia.org/w/api.php", params=params, headers=headers, timeout=8)
+        if r.status_code == 200:
+            results = r.json()
+            titles = results[1] if isinstance(results, list) and len(results) > 1 else []
+            if titles:
+                return titles[0].replace(" ", "_")
+    except Exception:
+        pass
+
+    return None
+
 
 def fetch_wikipedia_trends(technologies: list[str] | None = None, months: int = 24) -> pd.DataFrame:
     """
@@ -297,7 +346,10 @@ def fetch_wikipedia_trends(technologies: list[str] | None = None, months: int = 
     print("[INFO] Fetching historical trend data from Wikipedia...")
 
     for tech in technologies:
-        article = wiki_map.get(tech, tech.replace(" ", "_"))
+        article = _resolve_wiki_article(tech, wiki_map)
+        if not article:
+            print(f"  [WARN] Could not resolve Wikipedia article for '{tech}' — skipping.")
+            continue
         url = WIKI_URL.format(article, start_str, end_str)
         headers = {"User-Agent": "TechIntel/1.0 (https://github.com/example/techintel)"}
 
@@ -339,6 +391,102 @@ def fetch_wikipedia_trends(technologies: list[str] | None = None, months: int = 
             print(f"  [WARN] Wikipedia fetch failed for '{tech}': {e}")
 
     return pd.DataFrame(records, columns=["topic", "month", "mentions"])
+
+
+def fetch_arxiv_trends(technologies: list[str] | None = None, months: int = 48) -> pd.DataFrame:
+    """
+    Aggregate monthly arXiv paper submission counts per technology.
+    Returns a DataFrame with columns: topic, month, mentions.
+    """
+    technologies = _resolve_technologies(technologies)
+    records: list[dict[str, Any]] = []
+
+    end_date = datetime.now()
+    start_date = end_date - timedelta(days=30 * months)
+
+    print("[INFO] Fetching arXiv paper counts for trend signal...")
+
+    for tech in technologies:
+        # Fetch a large batch of papers and bucket by submission month
+        try:
+            params = {
+                "search_query": f'all:"{tech}"',
+                "start": 0,
+                "max_results": 200,
+                "sortBy": "submittedDate",
+                "sortOrder": "descending",
+            }
+            resp = requests.get(ARXIV_URL, params=params, timeout=15)
+            resp.raise_for_status()
+
+            root = ET.fromstring(resp.text)
+            ns = {"atom": "http://www.w3.org/2005/Atom"}
+
+            monthly_counts: dict[str, int] = {}
+            for entry in root.findall("atom:entry", ns):
+                published_el = entry.find("atom:published", ns)
+                if published_el is None or not published_el.text:
+                    continue
+                pub_date = datetime.fromisoformat(published_el.text[:10])
+                if pub_date < start_date:
+                    continue
+                month_str = pub_date.strftime("%Y-%m")
+                monthly_counts[month_str] = monthly_counts.get(month_str, 0) + 1
+
+            for month_str, count in monthly_counts.items():
+                records.append({"topic": tech, "month": month_str, "mentions": count})
+
+            time.sleep(0.5)
+        except Exception as e:
+            print(f"  [WARN] arXiv trend count failed for '{tech}': {e}")
+
+    return pd.DataFrame(records, columns=["topic", "month", "mentions"])
+
+
+def fetch_composite_trends(technologies: list[str] | None = None, months: int = 48) -> pd.DataFrame:
+    """
+    Fuse Wikipedia pageviews + arXiv paper counts into a single composite
+    monthly score per technology. Both signals are min-max normalised to
+    [0, 100] before being blended 70% Wikipedia / 30% arXiv.
+
+    Returns a DataFrame with columns: topic, month, mentions.
+    """
+    technologies = _resolve_technologies(technologies)
+
+    wiki_df = fetch_wikipedia_trends(technologies, months=months)
+    arxiv_df = fetch_arxiv_trends(technologies, months=months)
+
+    def _normalize(df: pd.DataFrame) -> pd.DataFrame:
+        """Min-max normalise the mentions column within each topic group."""
+        if df.empty:
+            return df
+        out = df.copy()
+        for topic, grp in out.groupby("topic"):
+            mn, mx = grp["mentions"].min(), grp["mentions"].max()
+            if mx > mn:
+                out.loc[grp.index, "mentions"] = (
+                    (grp["mentions"] - mn) / (mx - mn) * 100
+                )
+            else:
+                out.loc[grp.index, "mentions"] = 50.0
+        return out
+
+    wiki_norm = _normalize(wiki_df)
+    arxiv_norm = _normalize(arxiv_df)
+
+    # Merge on topic + month, fill gaps with 0
+    merged = pd.merge(
+        wiki_norm.rename(columns={"mentions": "wiki"}),
+        arxiv_norm.rename(columns={"mentions": "arxiv"}),
+        on=["topic", "month"],
+        how="outer",
+    ).fillna(0)
+
+    merged["mentions"] = (merged["wiki"] * 0.70 + merged["arxiv"] * 0.30).round(2)
+
+    result = merged[["topic", "month", "mentions"]].sort_values(["topic", "month"])
+    print(f"[INFO] Composite trend built: {len(result)} data points across {result['topic'].nunique()} topics.")
+    return result.reset_index(drop=True)
 
 
 # -- Single Source Search ----------------------------------------
