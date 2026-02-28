@@ -27,7 +27,7 @@ from storage import (
     create_user,
     verify_user,
 )
-from real_ingester import ingest_all, fetch_wikipedia_trends
+from real_ingester import ingest_all, fetch_wikipedia_trends, search_all_sources
 from ai_summarizer import generate_brief
 
 # ── Initialise app ────────────────────────────────────────────────
@@ -144,6 +144,37 @@ def get_brief_api(technology: str):
     
     brief = generate_brief(technology, tech_docs)
     return {"technology": technology, "brief": brief}
+
+
+# ── Dynamic Search Endpoint ───────────────────────────────────────
+
+@app.get("/api/search/{technology}")
+def search_technology_api(technology: str):
+    """
+    Search multiple public APIs for a specific technology on demand.
+    Returns trend forecast, recent documents, and an AI executive brief.
+    """
+    # Fetch real data for this exact query
+    data = search_all_sources(technology)
+    
+    docs = data.get("documents", [])
+    trends_df = data.get("trends_df")
+    
+    # Process trends if we got any
+    trends_result = None
+    if trends_df is not None and not trends_df.empty:
+        forecasts = forecast_trends(trends_df, forecast_months=6)
+        trends_result = forecasts.get(technology)
+        
+    # Generate brief based on the newly fetched docs
+    brief = generate_brief(technology, docs) if docs else "Insufficient specific data found to generate an executive brief."
+    
+    return {
+        "technology": technology,
+        "trends": trends_result,
+        "documents": docs,
+        "brief": brief
+    }
 
 
 # ── Auth Endpoints ────────────────────────────────────────────────

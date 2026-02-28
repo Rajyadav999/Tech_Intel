@@ -12,6 +12,7 @@ import axios from 'axios';
 
 import TopInsights from './TopInsights';
 import TrendChart from './TrendChart';
+import SearchPage from './SearchPage';
 import TopicClusters from './TopicClusters';
 import AIBriefCard from './AIBriefCard';
 import TrendsPage from './TrendsPage';
@@ -26,6 +27,7 @@ const API = 'http://localhost:8000/api';
 const NAV_ITEMS = [
   { section: 'Analytics' },
   { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+  { id: 'search', label: 'Deep Search', icon: '🔍' },
   { id: 'trends', label: 'Trends', icon: '📈' },
   { id: 'clusters', label: 'Topic Clusters', icon: '🧠' },
   { id: 'forecasts', label: 'Forecasts', icon: '🔮' },
@@ -38,6 +40,7 @@ const NAV_ITEMS = [
 
 const PAGE_TITLES = {
   dashboard: 'Dashboard',
+  search: 'Deep Search',
   trends: 'Trends',
   clusters: 'Topic Clusters',
   forecasts: 'Forecasts',
@@ -48,6 +51,7 @@ const PAGE_TITLES = {
 
 const PAGE_SUBTITLES = {
   dashboard: 'Overview  ·  Real-time Intelligence',
+  search: 'Dynamic technology discovery',
   trends: 'Historical data & forecasts',
   clusters: 'NLP-powered topic discovery',
   forecasts: 'Predictive analytics',
@@ -119,6 +123,7 @@ export default function Dashboard({ user, onLogout }) {
   // ── Page content router ──
   const renderPage = () => {
     switch (page) {
+      case 'search': return <SearchPage />;
       case 'trends': return <TrendsPage trends={trends} />;
       case 'clusters': return <ClustersPage clusters={clusters} />;
       case 'forecasts': return <ForecastsPage trends={trends} />;

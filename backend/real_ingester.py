@@ -245,6 +245,42 @@ def fetch_wikipedia_trends(technologies: list[str] = None, months: int = 24) -> 
     return pd.DataFrame(records)
 
 
+# ── Single Source Search ──────────────────────────────────────
+
+def search_all_sources(technology: str) -> dict:
+    """
+    Search all public APIs for a single technology.
+    Returns standard documents and a pandas DataFrame for trends.
+    """
+    import pandas as pd
+    tech_list = [technology]
+    docs = []
+    
+    print(f"📡 Searching real data APIs for '{technology}'...")
+    
+    # Docs
+    try: docs.extend(fetch_arxiv_papers(tech_list, max_per_tech=5))
+    except Exception as e: print(f"  ⚠ arXiv error: {e}")
+    
+    try: docs.extend(fetch_github_repos(tech_list, max_per_tech=3))
+    except Exception as e: print(f"  ⚠ GitHub error: {e}")
+        
+    try: docs.extend(fetch_hackernews_articles(tech_list, max_per_tech=5))
+    except Exception as e: print(f"  ⚠ HackerNews error: {e}")
+
+    # Trends
+    try: 
+        trends_df = fetch_wikipedia_trends(tech_list, months=24)
+    except Exception as e: 
+        print(f"  ⚠ Wikipedia error: {e}")
+        trends_df = pd.DataFrame()
+
+    return {
+        "documents": docs,
+        "trends_df": trends_df
+    }
+
+
 # ── Combined Ingester ─────────────────────────────────────────
 
 def ingest_all(technologies: list[str] = None) -> list[dict]:
