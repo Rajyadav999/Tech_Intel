@@ -150,3 +150,7 @@ npm run dev
 4. **Analysis** → Run ML clustering and trend detection
 5. **Summarization** → Generate AI-powered executive summaries
 6. **Presentation** → Display insights through React frontend
+
+📫 Connect With Me
+Email: ryadav.tech17@gmail.com / rajy97745@gmail.com
+LinkedIn: https://www.linkedin.com/in/raj-yadav-706b60397
